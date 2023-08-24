@@ -11,9 +11,7 @@ class ServerFailure extends Failure {
     super.errorMessage,
   );
 
-  factory ServerFailure.fromDioException({
-    required DioException error,
-  }) {
+  factory ServerFailure.fromDioException({required DioException error}) {
     switch (error.type) {
       case DioExceptionType.connectionTimeout:
         return ServerFailure('Connection timeout with ApiServer.');
@@ -31,7 +29,8 @@ class ServerFailure extends Failure {
       case DioExceptionType.connectionError:
         return ServerFailure('No internet connection');
       case DioExceptionType.unknown:
-        return ServerFailure('An error occurred,Please try again');
+        return ServerFailure(
+            'An error occurred while trying to establish a network connection.\n Please check your internet connection and try again');
 
       default:
         return ServerFailure('Opps there was an error,Please try again');

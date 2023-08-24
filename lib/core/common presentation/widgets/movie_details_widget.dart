@@ -127,9 +127,8 @@ class MovieDetailsWidget extends StatelessWidget {
                                                           .headlineMedium,
                                                     ),
                                                     CustomReleaseDate(
-                                                      releaseDate:
-                                                          movie.releaseDate,
-                                                    ),
+                                                        releaseDate:
+                                                            movie.releaseDate),
                                                   ],
                                                 ),
                                                 CustomRichText(
@@ -140,9 +139,8 @@ class MovieDetailsWidget extends StatelessWidget {
                                                 const SizedBox(height: 10),
                                                 CustomRichText(
                                                   text1: AppStrings.genres,
-                                                  text2: _showGenres(
-                                                    movie.genres,
-                                                  ),
+                                                  text2:
+                                                      _showGenres(movie.genres),
                                                 ),
                                                 Padding(
                                                   padding:
@@ -160,30 +158,7 @@ class MovieDetailsWidget extends StatelessWidget {
                                                       .textTheme.headlineSmall!
                                                       .copyWith(height: 1.2),
                                                 ),
-                                                state.recommendations.isNotEmpty
-                                                    ? Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .only(
-                                                                    top: 10),
-                                                            child: Text(
-                                                              AppStrings
-                                                                  .recommendations,
-                                                              style: theme
-                                                                  .textTheme
-                                                                  .headlineMedium,
-                                                            ),
-                                                          ),
-                                                          _movieRecommendations(
-                                                              state),
-                                                        ],
-                                                      )
-                                                    : const SizedBox(),
+                                                _movieRecommendations(context),
                                               ],
                                             ),
                                           ),
@@ -223,9 +198,11 @@ class MovieDetailsWidget extends StatelessWidget {
             );
 
           case RequestState.error:
-            return CustomErrorWidget(
-              errorMessage: state.movieDetailsMessage,
-              errorMovieCategoryName: AppStrings.movieDetails,
+            return Center(
+              child: CustomErrorWidget(
+                errorMessage: state.movieDetailsMessage,
+                errorMovieCategoryName: AppStrings.movieDetails,
+              ),
             );
         }
       },
@@ -256,23 +233,53 @@ class MovieDetailsWidget extends StatelessWidget {
     }
   }
 
-  GridView _movieRecommendations(MovieDetailsState state) {
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        mainAxisSpacing: 8.0,
-        crossAxisSpacing: 8.0,
-        childAspectRatio: 0.7,
-        crossAxisCount: 3,
-      ),
-      itemCount: state.recommendations.length,
-      itemBuilder: (context, index) {
-        final Recommendation recommendation = state.recommendations[index];
-        return MoviesRecommendations(
-          recommendation: recommendation,
-        );
-      },
+  _movieRecommendations(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: Text(
+            AppStrings.recommendations,
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
+        ),
+        BlocBuilder<MovieDetailsCubit, MovieDetailsState>(
+          buildWhen: (previous, current) =>
+              previous.recommendationsState != current.recommendationsState,
+          builder: (context, state) {
+            switch (state.recommendationsState) {
+              case RequestState.loading:
+                return const CircularProgressIndicator();
+              case RequestState.loaded:
+                return GridView.builder(
+                  padding: const EdgeInsets.only(top: 5, bottom: 7),
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    mainAxisSpacing: 8.0,
+                    crossAxisSpacing: 8.0,
+                    childAspectRatio: 0.7,
+                    crossAxisCount: 3,
+                  ),
+                  itemCount: state.recommendations.length,
+                  itemBuilder: (context, index) {
+                    final Recommendation recommendation =
+                        state.recommendations[index];
+                    return MoviesRecommendations(
+                      recommendation: recommendation,
+                    );
+                  },
+                );
+              case RequestState.error:
+                return CustomErrorWidget(
+                  errorMessage: state.recommendationsMessage,
+                  errorMovieCategoryName: 'Recommendations',
+                );
+            }
+          },
+        ),
+      ],
     );
   }
 }

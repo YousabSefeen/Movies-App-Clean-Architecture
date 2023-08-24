@@ -11,7 +11,7 @@ class AppStrings {
 
   static const String topRated = "Top Rated";
   static const String loading = "Loading...";
-  static const String movieDetails = "Movie Details";
+  static const String movieDetails = "movie details";
   static const String releaseDate = 'Release Date: ';
   static const String duration = 'Duration: ';
   static const String genres = 'Genres: ';

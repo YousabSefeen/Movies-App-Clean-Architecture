@@ -21,7 +21,7 @@ class NowPlayingWidget extends StatelessWidget {
     final height = MediaQuery.sizeOf(context).height;
 
     return BlocBuilder<MoviesCubit, MoviesState>(
-      buildWhen: (previous, current) =>
+        buildWhen: (previous, current) =>
           previous.nowPlayingState != current.nowPlayingState,
       builder: (BuildContext context, state) {
         switch (state.nowPlayingState) {
@@ -111,7 +111,7 @@ class NowPlayingWidget extends StatelessWidget {
             );
           case RequestState.error:
             return CustomErrorWidget(
-              errorMovieCategoryName: AppStrings.nowPlaying,
+              errorMovieCategoryName:'now playing movies',
               errorMessage: state.nowPlayingMessageError,
             );
         }

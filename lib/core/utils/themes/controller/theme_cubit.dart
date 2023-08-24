@@ -1,8 +1,13 @@
+import 'dart:async';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_movies_app/core/utils/check%20internet/no_internet_connection_screen.dart';
 import 'package:flutter_movies_app/core/utils/themes/controller/theme_state.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../common presentation/splash/screens/splash_screen.dart';
 import '../../app_colors.dart';
 
 class ThemeCubit extends Cubit<ThemeState> {
@@ -44,5 +49,32 @@ class ThemeCubit extends Cubit<ThemeState> {
     }
 
     emit(GetThemeState());
+  }
+
+  StreamSubscription? _subscription;
+
+  Widget mainScreen = const SplashScreen();
+
+  void checkConnection() {
+    emit(CheckConnectedState());
+    _subscription = Connectivity()
+        .onConnectivityChanged
+        .listen((ConnectivityResult result) {
+
+      if (result == ConnectivityResult.wifi ||
+          result == ConnectivityResult.mobile) {
+        mainScreen = const SplashScreen();
+        emit(ConnectedState(mainScreen));
+      } else if (result == ConnectivityResult.none) {
+        mainScreen = const NotConnectivityScreen();
+        emit(NotConnectedState(mainScreen));
+      }
+    });
+  }
+
+  @override
+  Future<void> close() {
+    _subscription!.cancel();
+    return super.close();
   }
 }

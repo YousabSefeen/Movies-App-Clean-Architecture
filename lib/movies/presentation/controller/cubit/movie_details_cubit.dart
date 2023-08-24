@@ -37,7 +37,7 @@ class MovieDetailsCubit extends Cubit<MovieDetailsState> {
     response.fold(
         (l) => emit(state.copyWith(
               recommendationsState: RequestState.error,
-              recommendationsMessage: state.movieDetailsMessage,
+              recommendationsMessage: l.errorMessage,
             )),
         (r) => emit(state.copyWith(
               recommendations: r,
