@@ -2,13 +2,13 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/common presentation/screens/movie_details_screen.dart';
-import '../../../core/common presentation/widgets/custom_cached_network_image.dart';
-import '../../../core/common presentation/widgets/custom_error_widget.dart';
-import '../../../core/common presentation/widgets/custom_shimmer.dart';
-import '../../../core/utils/api_constants.dart';
-import '../../../core/utils/app_strings.dart';
-import '../../../core/utils/enums.dart';
+import '../../../../core/common presentation/widgets/custom_cached_network_image.dart';
+import '../../../../core/common presentation/widgets/custom_error_widget.dart';
+import '../../../../core/common presentation/widgets/custom_shimmer.dart';
+import '../../../../core/utils/api_constants.dart';
+import '../../../../core/utils/app_strings.dart';
+import '../../../../core/utils/enums.dart';
+import '../../movie details/screens/movie_details_screen.dart';
 import '../controller/cubit/movies_cubit.dart';
 import '../controller/states/movies_state.dart';
 

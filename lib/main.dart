@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_movies_app/core/common%20presentation/splash/screens/splash_screen.dart';
 
-import 'core/common presentation/screens/movie_details_screen.dart';
 import 'core/services/bloc_observer.dart';
 import 'core/services/services_locator.dart';
 import 'core/utils/app_strings.dart';
@@ -13,7 +12,8 @@ import 'core/utils/check internet/no_internet_connection_screen.dart';
 import 'core/utils/themes/controller/theme_cubit.dart';
 import 'core/utils/themes/controller/theme_state.dart';
 import 'core/utils/themes/styles/themes.dart';
-import 'movies/presentation/screens/main_screen.dart';
+import 'movies/presentation/home/screens/main_screen.dart';
+import 'movies/presentation/movie details/screens/movie_details_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,7 +46,6 @@ class _MyAppState extends State<MyApp> {
     _connectivity.myStream.listen((source) {
       setState(() => _source = source);
     });
-    mainScreen();
   }
 
   @override
@@ -55,7 +54,7 @@ class _MyAppState extends State<MyApp> {
     super.dispose();
   }
 
-  Widget home = const SplashScreen();
+  late Widget home;
 
   void mainScreen() {
     switch (_source.keys.toList()[0]) {
@@ -76,8 +75,7 @@ class _MyAppState extends State<MyApp> {
     mainScreen();
     return BlocProvider(
       create: (context) => servicesLocator<ThemeCubit>()..getThemePref(),
-      child: BlocConsumer<ThemeCubit, ThemeState>(
-        listener: (context, state) {},
+      child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: (context, state) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
@@ -96,26 +94,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-/*
- return BlocProvider(
-      create: (context) => servicesLocator<ThemeCubit>()..getThemePref(),
-      child: BlocBuilder<ThemeCubit, ThemeState>(
-        builder: (context, state) {
-          mainScreen();
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: AppStrings.movies,
-            theme: AppThemes.light(context),
-            darkTheme: AppThemes.dark(context),
-            themeMode: ThemeCubit.object(context).theme,
-            home: home,
-            routes: {
-              MovieDetailsScreen.route: (context) =>
-              const MovieDetailsScreen(),
-              MainScreen.route: (context) => const MainScreen(),
-            },
-          );
-        },
-      ),
-    );
- */

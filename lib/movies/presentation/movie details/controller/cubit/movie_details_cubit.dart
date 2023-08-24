@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/utils/enums.dart';
-import '../../../domain/use cases/get_movie_detail_use_case.dart';
-import '../../../domain/use cases/get_recommendation_use_case.dart';
+import '../../../../../core/utils/enums.dart';
+import '../../../../domain/use cases/get_movie_detail_use_case.dart';
+import '../../../../domain/use cases/get_recommendation_use_case.dart';
 import '../states/movie_details_state.dart';
 
 class MovieDetailsCubit extends Cubit<MovieDetailsState> {

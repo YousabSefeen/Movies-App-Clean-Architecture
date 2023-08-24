@@ -3,13 +3,14 @@ import 'dart:async';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/base use cases/base_use_case.dart';
-import '../../../../core/errors/failure.dart';import '../../../../core/utils/enums.dart';
-import '../../../domain/entities/movie.dart';
-import '../../../domain/use cases/get_now_playing_movies_use_case.dart';
-import '../../../domain/use cases/get_popular_movies_use_case.dart';
-import '../../../domain/use cases/get_top_rated_movies_use_case.dart';
-import '../../../domain/use cases/get_upcoming_movies_use_case.dart';
+import '../../../../../core/base use cases/base_use_case.dart';
+import '../../../../../core/errors/failure.dart';
+import '../../../../../core/utils/enums.dart';
+import '../../../../domain/entities/movie.dart';
+import '../../../../domain/use cases/get_now_playing_movies_use_case.dart';
+import '../../../../domain/use cases/get_popular_movies_use_case.dart';
+import '../../../../domain/use cases/get_top_rated_movies_use_case.dart';
+import '../../../../domain/use cases/get_upcoming_movies_use_case.dart';
 import '../states/movies_state.dart';
 
 class MoviesCubit extends Cubit<MoviesState> {

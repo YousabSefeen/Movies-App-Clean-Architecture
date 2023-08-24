@@ -37,21 +37,22 @@ class CustomErrorWidget extends StatelessWidget {
               const SizedBox(width: 10),
               Expanded(
                 child: Text(
-
-                 // 'An error occurred displaying $errorMovieCategoryName Movies.',
                   'An error occurred while displaying $errorMovieCategoryName .',
                   style: const TextStyle(
                     color: Colors.red,
                     fontSize: 22,
                     fontWeight: FontWeight.w700,
                   ),
-                  maxLines:3,
+                  maxLines: 3,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
             ],
           ),
-          const Divider(thickness: 2,color: Colors.black54,),
+          const Divider(
+            thickness: 2,
+            color: Colors.black54,
+          ),
           ListTile(
             title: Text(
               errorMessage,
@@ -60,11 +61,10 @@ class CustomErrorWidget extends StatelessWidget {
                 fontSize: 15,
                 fontWeight: FontWeight.w400,
               ),
-          maxLines: 6,
+              maxLines: 6,
               overflow: TextOverflow.ellipsis,
             ),
           ),
-
           const SizedBox(height: 12),
           SizedBox(
             //  height: 35.h,

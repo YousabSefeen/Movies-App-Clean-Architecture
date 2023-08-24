@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../movies/presentation/controller/cubit/movie_details_cubit.dart';
-import '../../services/services_locator.dart';
+import '../../../../core/services/services_locator.dart';
+import '../controller/cubit/movie_details_cubit.dart';
 import '../widgets/movie_details_widget.dart';
 
 class MovieDetailsScreen extends StatelessWidget {

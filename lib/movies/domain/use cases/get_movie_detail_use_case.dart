@@ -2,7 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../core/base use cases/base_use_case.dart';
-import '../../../core/errors/failure.dart';import '../entities/movie_details.dart';
+import '../../../core/errors/failure.dart';
+import '../entities/movie_details.dart';
 import '../repository/base_movies_repository.dart';
 
 class GetMovieDetailsUSeCase

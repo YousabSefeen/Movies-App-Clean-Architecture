@@ -11,15 +11,15 @@ class CustomCachedNetworkImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CachedNetworkImage(
       imageUrl: imageUrl,
+      fit: BoxFit.cover,
+      height: double.infinity,
+      width: double.infinity,
       placeholder: (context, _) => Image.asset(
         'assets/images/loading.gif',
         fit: BoxFit.cover,
         height: double.infinity,
         width: double.infinity,
       ),
-      fit: BoxFit.cover,
-      height: double.infinity,
-      width: double.infinity,
       errorWidget: (context, s, _) => Image.asset(
         'assets/images/error.png',
         fit: BoxFit.cover,

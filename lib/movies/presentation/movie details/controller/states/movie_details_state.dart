@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 
-import '../../../../core/utils/enums.dart';
-import '../../../domain/entities/movie_details.dart';
-import '../../../domain/entities/recommendation.dart';
+import '../../../../../core/utils/enums.dart';
+import '../../../../domain/entities/movie_details.dart';
+import '../../../../domain/entities/recommendation.dart';
 
 class MovieDetailsState extends Equatable {
   final MovieDetails? movieDetails;

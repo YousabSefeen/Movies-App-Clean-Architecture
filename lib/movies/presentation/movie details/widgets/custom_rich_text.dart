@@ -13,9 +13,12 @@ class CustomRichText extends StatelessWidget {
 
     return RichText(
       text: TextSpan(
-          text: text1,
-          style: theme.headlineMedium,
-          children: [TextSpan(text: text2, style: theme.headlineSmall!)]),
+        text: text1,
+        style: theme.headlineMedium,
+        children: [
+          TextSpan(text: text2, style: theme.headlineSmall!),
+        ],
+      ),
     );
   }
 }

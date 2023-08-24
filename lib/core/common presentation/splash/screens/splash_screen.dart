@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-
-import '../../../../movies/presentation/screens/main_screen.dart';
+import '../../../../movies/presentation/home/screens/main_screen.dart';
 import '../widgets/splash_widget.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -21,8 +20,8 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
-    initAnimation();
-    navigatorToHome();
+    _initAnimation();
+    _navigatorToHome();
   }
 
   @override
@@ -35,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen>
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor:Colors.white,
+        backgroundColor: Colors.white,
         body: SplashWidget(
           slidingImage: _slidingImage,
           slidingText: _slidingText,
@@ -44,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen>
     );
   }
 
-  void initAnimation() {
+  void _initAnimation() {
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 700),
@@ -63,10 +62,9 @@ class _SplashScreenState extends State<SplashScreen>
     _animationController.forward();
   }
 
-  void navigatorToHome() {
+  void _navigatorToHome() {
     Future.delayed(
-       const Duration(seconds: 2),
-
+      const Duration(seconds: 2),
       () => Navigator.of(context).pushReplacementNamed(MainScreen.route),
     );
   }

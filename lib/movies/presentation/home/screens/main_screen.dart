@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../core/services/services_locator.dart';
-import '../../../core/utils/app_colors.dart';
-import '../../../core/utils/app_strings.dart';
-import '../../../core/utils/themes/controller/theme_cubit.dart';
-import '../../../core/utils/themes/styles/custom_background_color_gradient.dart';
+import '../../../../core/services/services_locator.dart';
+import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/app_strings.dart';
+import '../../../../core/utils/themes/controller/theme_cubit.dart';
+import '../../../../core/utils/themes/styles/custom_background_color_gradient.dart';
 import '../controller/cubit/movies_cubit.dart';
 import '../widgets/now_playing_widget.dart';
 import '../widgets/popular_widget.dart';

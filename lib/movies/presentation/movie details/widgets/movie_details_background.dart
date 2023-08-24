@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'custom_cached_network_image.dart';
+import '../../../../core/common presentation/widgets/custom_cached_network_image.dart';
 
 class MovieDetailsBackground extends StatelessWidget {
   final int id;
