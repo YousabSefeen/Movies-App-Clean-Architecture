@@ -9,8 +9,8 @@ import 'core/services/services_locator.dart';
 import 'core/utils/app_strings.dart';
 import 'core/utils/check internet/check_internet.dart';
 import 'core/utils/check internet/no_internet_connection_screen.dart';
-import 'core/utils/themes/controller/theme_cubit.dart';
-import 'core/utils/themes/controller/theme_state.dart';
+import 'core/utils/themes/controller/app_setting_cubit.dart';
+import 'core/utils/themes/controller/app_setting_states.dart';
 import 'core/utils/themes/styles/themes.dart';
 import 'movies/presentation/home/screens/main_screen.dart';
 import 'movies/presentation/movie details/screens/movie_details_screen.dart';
@@ -74,15 +74,15 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     mainScreen();
     return BlocProvider(
-      create: (context) => servicesLocator<ThemeCubit>()..getThemePref(),
-      child: BlocBuilder<ThemeCubit, ThemeState>(
+      create: (context) => servicesLocator<AppSettingCubit>()..getThemePref(),
+      child: BlocBuilder<AppSettingCubit, AppSettingStates>(
         builder: (context, state) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: AppStrings.movies,
             theme: AppThemes.light(context),
             darkTheme: AppThemes.dark(context),
-            themeMode: ThemeCubit.object(context).theme,
+            themeMode: AppSettingCubit.object(context).theme,
             home: home,
             routes: {
               MovieDetailsScreen.route: (context) => const MovieDetailsScreen(),

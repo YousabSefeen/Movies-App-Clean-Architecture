@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_movies_app/core/utils/themes/controller/theme_state.dart';
+import 'package:flutter_movies_app/core/utils/themes/controller/app_setting_states.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../app_colors.dart';
 
-class ThemeCubit extends Cubit<ThemeState> {
-  ThemeCubit() : super(ThemeInitial());
+class AppSettingCubit extends Cubit<AppSettingStates> {
+  AppSettingCubit() : super(AppSettingInitialState());
 
-  static ThemeCubit object(context) => BlocProvider.of(context);
+  static AppSettingCubit object(context) => BlocProvider.of(context);
 
   ThemeMode theme = ThemeMode.light;
 

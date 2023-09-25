@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../app_colors.dart';
-import '../controller/theme_cubit.dart';
-import '../controller/theme_state.dart';
+import '../controller/app_setting_cubit.dart';
+import '../controller/app_setting_states.dart';
 
 class CustomBackgroundColorGradient extends StatelessWidget {
   final Widget? child;
@@ -12,7 +12,7 @@ class CustomBackgroundColorGradient extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ThemeCubit, ThemeState>(
+    return BlocBuilder<AppSettingCubit, AppSettingStates>(
       builder: (context, state) {
         return Container(
           decoration: BoxDecoration(

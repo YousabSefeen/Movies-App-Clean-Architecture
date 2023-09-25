@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../../core/services/services_locator.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
-import '../../../../core/utils/themes/controller/theme_cubit.dart';
+import '../../../../core/utils/themes/controller/app_setting_cubit.dart';
 import '../../../../core/utils/themes/styles/custom_background_color_gradient.dart';
 import '../controller/cubit/movies_cubit.dart';
 import '../widgets/now_playing_widget.dart';
@@ -53,7 +53,7 @@ class _MainScreenState extends State<MainScreen>
 
   @override
   Widget build(BuildContext context) {
-    final isDark = ThemeCubit.object(context).theme == ThemeMode.dark;
+    final isDark = AppSettingCubit.object(context).theme == ThemeMode.dark;
     return BlocProvider(
       create: (context) => servicesLocator<MoviesCubit>()
         ..getNowPlayingMovies()
@@ -69,7 +69,7 @@ class _MainScreenState extends State<MainScreen>
               flexibleSpace: const CustomBackgroundColorGradient(),
               title: const Text(AppStrings.movies),
               leading: IconButton(
-                onPressed: () => ThemeCubit.object(context).changeTheme(),
+                onPressed: () => AppSettingCubit.object(context).changeTheme(),
                 icon: CircleAvatar(
                   backgroundColor: Theme.of(context).splashColor,
                   radius: 20,
@@ -109,7 +109,7 @@ class _MainScreenState extends State<MainScreen>
   Container customTabBar() {
     Size deviceSize = MediaQuery.sizeOf(context);
 
-    final isDark = ThemeCubit.object(context).theme == ThemeMode.dark;
+    final isDark = AppSettingCubit.object(context).theme == ThemeMode.dark;
     return Container(
       height: deviceSize.height * 0.055,
       decoration: BoxDecoration(
