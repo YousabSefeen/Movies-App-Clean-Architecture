@@ -1,16 +1,12 @@
-# flutter_movies_app
+# Movies App (Clean Architecture)
 
-A new Flutter project.
+- Created a movies app using Flutter and the tmdb API.\
+- Followed the Bloc architecture pattern for state management.\
+- Implemented Dark and Light theme modes for user preference.\
+  
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+https://github.com/YousabSefeen/Movies-App-Clean-Architecture/assets/97704843/8d7d2ae8-c00c-407b-9c62-506be1f72209
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
