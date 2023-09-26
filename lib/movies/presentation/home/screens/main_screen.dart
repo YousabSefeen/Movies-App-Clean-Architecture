@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movies_app/movies/presentation/home/widgets/custom_home_app_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../core/common presentation/widgets/no_internet_connection_screen.dart';
@@ -53,7 +54,6 @@ class _MainScreenState extends State<MainScreen>
   Widget build(BuildContext context) {
     bool isInternetConnection =
         AppSettingCubit.object(context).isInternetConnection == false;
-    final isDark = AppSettingCubit.object(context).theme == ThemeMode.dark;
 
     return isInternetConnection
         ? const NoInternetScreen()
@@ -61,28 +61,7 @@ class _MainScreenState extends State<MainScreen>
             body: CustomBackgroundColorGradient(
             child: CustomScrollView(
               slivers: [
-                SliverAppBar(
-                  pinned: true,
-                  flexibleSpace: const CustomBackgroundColorGradient(),
-                  title: const Text(AppStrings.movies),
-                  leading: IconButton(
-                    onPressed: () =>
-                        AppSettingCubit.object(context).changeTheme(),
-                    icon: CircleAvatar(
-                      backgroundColor: Theme.of(context).splashColor,
-                      radius: 20,
-                      child: Icon(
-                        isDark ? Icons.sunny : Icons.dark_mode_rounded,
-                        color: isDark ? Colors.amber : Colors.black,
-                      ),
-                    ),
-                  ),
-                  actions: [
-                    IconButton(
-                        onPressed: () async {},
-                        icon: const Icon(Icons.search_sharp))
-                  ],
-                ),
+                const CustomHomeAppBar(),
                 SliverList(
                   delegate: SliverChildListDelegate(
                     [
