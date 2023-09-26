@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_movies_app/core/common%20presentation/splash/screens/splash_screen.dart';
+import 'package:flutter_movies_app/core/utils/app_routers.dart';
 
-import 'core/common presentation/widgets/no_internet_connection_screen.dart';
 import 'core/services/bloc_observer.dart';
 import 'core/services/services_locator.dart';
 import 'core/utils/app setting/controller/app_setting_cubit.dart';
@@ -11,8 +11,6 @@ import 'core/utils/app setting/controller/app_setting_states.dart';
 import 'core/utils/app setting/styles/themes.dart';
 import 'core/utils/app_strings.dart';
 import 'movies/presentation/home/controller/cubit/movies_cubit.dart';
-import 'movies/presentation/home/screens/main_screen.dart';
-import 'movies/presentation/movie details/screens/movie_details_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -59,12 +57,7 @@ class MyApp extends StatelessWidget {
               darkTheme: AppThemes.dark(context),
               themeMode: AppSettingCubit.object(context).theme,
               home: const SplashScreen(),
-              routes: {
-                MovieDetailsScreen.route: (context) =>
-                    const MovieDetailsScreen(),
-                MainScreen.route: (context) => const MainScreen(),
-                NoInternetScreen.route: (context) => const NoInternetScreen(),
-              },
+              routes: AppRouters.routers,
             );
           },
         ),

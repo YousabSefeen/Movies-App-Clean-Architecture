@@ -37,7 +37,6 @@ class SplashWidget extends StatelessWidget {
                   stops: const [0, 1],
                 ),
                 borderRadius: BorderRadius.circular(20),
-                //border: Border.all(color: Colors.white, width: 2),
                 boxShadow: const [
                   BoxShadow(
                     blurRadius: 8,

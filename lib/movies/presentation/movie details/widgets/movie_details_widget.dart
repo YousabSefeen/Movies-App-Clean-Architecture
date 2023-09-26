@@ -21,7 +21,6 @@ class MovieDetailsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //  final ThemeData theme = Theme.of(context);
     final TextTheme textTheme = Theme.of(context).textTheme;
 
     return BlocBuilder<MovieDetailsCubit, MovieDetailsState>(

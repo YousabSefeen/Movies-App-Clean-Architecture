@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_movies_app/core/utils/app_routers.dart';
 
 import '../../../../core/common presentation/widgets/custom_cached_network_image.dart';
 import '../../../../core/common presentation/widgets/custom_error_widget.dart';
@@ -81,8 +82,9 @@ class MoviesRecommendationsWidget extends StatelessWidget {
           ? ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(4)),
               child: InkWell(
-                onTap: () => Navigator.of(context).pushReplacementNamed(
-                  MovieDetailsScreen.route,
+                onTap: () => AppRouters.goAndReplacement(
+                  context: context,
+                  route: MovieDetailsScreen.route,
                   arguments: recommendation.id,
                 ),
                 child: CustomCachedNetworkImage(

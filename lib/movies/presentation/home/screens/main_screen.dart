@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_movies_app/core/utils/app_routers.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../core/common presentation/widgets/custom_app_alerts.dart';
@@ -67,10 +68,9 @@ class _MainScreenState extends State<MainScreen>
 
           Timer(
             const Duration(seconds: 4),
-            () => Navigator.of(context, rootNavigator: true)
-                .pushNamedAndRemoveUntil(
-              NoInternetScreen.route,
-              (Route<dynamic> route) => false,
+            () => AppRouters.goAndRemoveUntil(
+              context: context,
+              route: NoInternetScreen.route,
             ),
           );
         }

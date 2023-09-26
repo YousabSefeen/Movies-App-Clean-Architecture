@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_movies_app/core/utils/app_routers.dart';
 
 import '../../../../core/common presentation/widgets/custom_cached_network_image.dart';
 import '../../../../core/common presentation/widgets/custom_error_widget.dart';
@@ -47,8 +48,9 @@ class NowPlayingWidget extends StatelessWidget {
                       (movie) => GestureDetector(
                         key: const Key(AppStrings.openMovieDetails),
                         onTap: () {
-                          Navigator.of(context).pushNamed(
-                            MovieDetailsScreen.route,
+                          AppRouters.go(
+                            context: context,
+                            route: MovieDetailsScreen.route,
                             arguments: movie.id,
                           );
                         },

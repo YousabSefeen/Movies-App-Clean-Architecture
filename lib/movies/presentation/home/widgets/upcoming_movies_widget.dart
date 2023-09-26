@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_movies_app/core/utils/app_routers.dart';
 
 import '../../../../core/common presentation/widgets/custom_cached_network_image.dart';
 import '../../../../core/common presentation/widgets/custom_error_widget.dart';
@@ -41,8 +42,9 @@ class UpcomingMoviesWidget extends StatelessWidget {
                   child: Card(
                     child: InkWell(
                       borderRadius: BorderRadius.circular(30),
-                      onTap: () => Navigator.of(context).pushNamed(
-                        MovieDetailsScreen.route,
+                      onTap: () => AppRouters.go(
+                        context: context,
+                        route: MovieDetailsScreen.route,
                         arguments: movie.id,
                       ),
                       child: Row(

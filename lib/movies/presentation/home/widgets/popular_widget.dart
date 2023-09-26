@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_movies_app/core/utils/app_routers.dart';
 
 import '../../../../core/common presentation/widgets/custom_cached_network_image.dart';
 import '../../../../core/common presentation/widgets/custom_error_widget.dart';
@@ -49,8 +50,9 @@ class PopularWidget extends StatelessWidget {
                   final movie = state.popularMovies[index];
                   return InkWell(
                     splashColor: Colors.red,
-                    onTap: () => Navigator.of(context).pushNamed(
-                      MovieDetailsScreen.route,
+                    onTap: () => AppRouters.go(
+                      context: context,
+                      route: MovieDetailsScreen.route,
                       arguments: movie.id,
                     ),
                     child: Stack(

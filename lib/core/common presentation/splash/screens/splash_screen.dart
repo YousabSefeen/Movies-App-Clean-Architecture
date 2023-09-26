@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movies_app/core/utils/app_routers.dart';
 
 import '../../../../movies/presentation/home/screens/main_screen.dart';
 import '../widgets/splash_widget.dart';
@@ -65,7 +66,10 @@ class _SplashScreenState extends State<SplashScreen>
   void _navigatorToHome() {
     Future.delayed(
       const Duration(seconds: 2),
-      () => Navigator.of(context).pushReplacementNamed(MainScreen.route),
+      () => AppRouters.goAndReplacement(
+        context: context,
+        route: MainScreen.route,
+      ),
     );
   }
 }

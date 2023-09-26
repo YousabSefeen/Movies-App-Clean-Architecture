@@ -67,7 +67,6 @@ class CustomErrorWidget extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           SizedBox(
-            //  height: 35.h,
             height: 40,
             child: ElevatedButton(
               onPressed: () => Navigator.of(context).push(

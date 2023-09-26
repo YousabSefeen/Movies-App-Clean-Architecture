@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_movies_app/core/utils/app_routers.dart';
 
 import '../../../movies/presentation/home/screens/main_screen.dart';
 import '../../utils/app setting/controller/app_setting_cubit.dart';
@@ -15,9 +16,9 @@ class NoInternetScreen extends StatelessWidget {
     return BlocListener<AppSettingCubit, AppSettingStates>(
       listener: (context, state) {
         if (state is InternetConnectionState) {
-          Navigator.of(context, rootNavigator: true).pushNamedAndRemoveUntil(
-            MainScreen.route,
-            (Route<dynamic> route) => false,
+          AppRouters.goAndRemoveUntil(
+            context: context,
+            route: MainScreen.route,
           );
         }
       },
