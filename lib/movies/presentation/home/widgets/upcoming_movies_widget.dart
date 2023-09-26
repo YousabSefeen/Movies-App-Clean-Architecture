@@ -10,7 +10,6 @@ import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/enums.dart';
 import '../../../domain/entities/movie.dart';
 import '../../movie details/screens/movie_details_screen.dart';
-
 import '../controller/cubit/movies_cubit.dart';
 import '../controller/states/movies_state.dart';
 

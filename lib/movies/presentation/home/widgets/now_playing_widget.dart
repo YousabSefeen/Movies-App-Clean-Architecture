@@ -9,7 +9,6 @@ import '../../../../core/common presentation/widgets/custom_shimmer.dart';
 import '../../../../core/utils/api_constants.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/enums.dart';
-
 import '../../movie details/screens/movie_details_screen.dart';
 import '../controller/cubit/movies_cubit.dart';
 import '../controller/states/movies_state.dart';

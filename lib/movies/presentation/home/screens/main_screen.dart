@@ -1,13 +1,16 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../../core/services/services_locator.dart';
+import '../../../../core/common presentation/widgets/custom_app_alerts.dart';
+import '../../../../core/common presentation/widgets/no_internet_connection_screen.dart';
+import '../../../../core/utils/app setting/controller/app_setting_cubit.dart';
+import '../../../../core/utils/app setting/controller/app_setting_states.dart';
+import '../../../../core/utils/app setting/styles/custom_background_color_gradient.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
-import '../../../../core/utils/themes/controller/app_setting_cubit.dart';
-import '../../../../core/utils/themes/styles/custom_background_color_gradient.dart';
-import '../controller/cubit/movies_cubit.dart';
 import '../widgets/now_playing_widget.dart';
 import '../widgets/popular_widget.dart';
 import '../widgets/top_rated_widget.dart';
@@ -54,55 +57,78 @@ class _MainScreenState extends State<MainScreen>
   @override
   Widget build(BuildContext context) {
     final isDark = AppSettingCubit.object(context).theme == ThemeMode.dark;
-    return BlocProvider(
-      create: (context) => servicesLocator<MoviesCubit>()
-        ..getNowPlayingMovies()
-        ..getPopularMovies()
-        ..getTopRatedMovies()
-        ..getUpcomingMovies(),
-      child: Scaffold(
-          body: CustomBackgroundColorGradient(
-        child: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              pinned: true,
-              flexibleSpace: const CustomBackgroundColorGradient(),
-              title: const Text(AppStrings.movies),
-              leading: IconButton(
-                onPressed: () => AppSettingCubit.object(context).changeTheme(),
-                icon: CircleAvatar(
-                  backgroundColor: Theme.of(context).splashColor,
-                  radius: 20,
-                  child: Icon(
-                    isDark ? Icons.sunny : Icons.dark_mode_rounded,
-                    color: isDark ? Colors.amber : Colors.black,
-                  ),
+    return BlocConsumer<AppSettingCubit, AppSettingStates>(
+      listener: (context, state) {
+        if (state is NoInternetConnectionState) {
+          CustomAppAlerts.alertNoInternet(
+            context: context,
+            message: 'Could Not Connected',
+          );
+
+          Timer(
+            const Duration(seconds: 4),
+            () => Navigator.of(context, rootNavigator: true)
+                .pushNamedAndRemoveUntil(
+              NoInternetScreen.route,
+              (Route<dynamic> route) => false,
+            ),
+          );
+        }
+      },
+      builder: (context, state) {
+        bool isInternetConnection =
+            AppSettingCubit.object(context).isInternetConnection == false;
+        return isInternetConnection
+            ? const NoInternetScreen()
+            : Scaffold(
+                body: CustomBackgroundColorGradient(
+                child: CustomScrollView(
+                  slivers: [
+                    SliverAppBar(
+                      pinned: true,
+                      flexibleSpace: const CustomBackgroundColorGradient(),
+                      title: const Text(AppStrings.movies),
+                      leading: IconButton(
+                        onPressed: () =>
+                            AppSettingCubit.object(context).changeTheme(),
+                        icon: CircleAvatar(
+                          backgroundColor: Theme.of(context).splashColor,
+                          radius: 20,
+                          child: Icon(
+                            isDark ? Icons.sunny : Icons.dark_mode_rounded,
+                            color: isDark ? Colors.amber : Colors.black,
+                          ),
+                        ),
+                      ),
+                      actions: [
+                        IconButton(
+                            onPressed: () async {},
+                            icon: const Icon(Icons.search_sharp))
+                      ],
+                    ),
+                    SliverList(
+                      delegate: SliverChildListDelegate(
+                        [
+                          const NowPlayingWidget(),
+                          Align(
+                              alignment: Alignment.center,
+                              child: customTabBar()),
+                          const SizedBox(height: 12),
+                        ],
+                      ),
+                    ),
+                    SliverFillRemaining(
+                      child: TabBarView(
+                        controller: _tabController,
+                        children: _movieCategories
+                            .map((category) => category)
+                            .toList(),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              actions: [
-                IconButton(
-                    onPressed: () async {},
-                    icon: const Icon(Icons.search_sharp))
-              ],
-            ),
-            SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                  const NowPlayingWidget(),
-                  Align(alignment: Alignment.center, child: customTabBar()),
-                  const SizedBox(height: 12),
-                ],
-              ),
-            ),
-            SliverFillRemaining(
-              child: TabBarView(
-                controller: _tabController,
-                children: _movieCategories.map((category) => category).toList(),
-              ),
-            ),
-          ],
-        ),
-      )),
+              ));
+      },
     );
   }
 

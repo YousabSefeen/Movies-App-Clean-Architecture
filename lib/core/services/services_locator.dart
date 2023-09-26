@@ -11,7 +11,7 @@ import '../../movies/domain/use cases/get_top_rated_movies_use_case.dart';
 import '../../movies/domain/use cases/get_upcoming_movies_use_case.dart';
 import '../../movies/presentation/home/controller/cubit/movies_cubit.dart';
 import '../../movies/presentation/movie details/controller/cubit/movie_details_cubit.dart';
-import '../utils/themes/controller/app_setting_cubit.dart';
+import '../utils/app setting/controller/app_setting_cubit.dart';
 
 GetIt servicesLocator = GetIt.instance;
 

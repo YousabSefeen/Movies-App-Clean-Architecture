@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 class CustomReleaseDate extends StatelessWidget {
   final String releaseDate;
 
-  const CustomReleaseDate({Key? key, required this.releaseDate}) : super(key: key);
+  const CustomReleaseDate({Key? key, required this.releaseDate})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(

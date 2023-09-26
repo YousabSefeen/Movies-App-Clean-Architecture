@@ -1,9 +1,12 @@
+import 'dart:async';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_movies_app/core/utils/themes/controller/app_setting_states.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../app_colors.dart';
+import 'app_setting_states.dart';
 
 class AppSettingCubit extends Cubit<AppSettingStates> {
   AppSettingCubit() : super(AppSettingInitialState());
@@ -44,5 +47,28 @@ class AppSettingCubit extends Cubit<AppSettingStates> {
     }
 
     emit(GetThemeState());
+  }
+
+  bool isInternetConnection = false;
+  StreamSubscription? _streamSubscription;
+
+  void checkInternetConnection() {
+    _streamSubscription = Connectivity()
+        .onConnectivityChanged
+        .listen((ConnectivityResult result) {
+      if (result == ConnectivityResult.mobile ||
+          result == ConnectivityResult.wifi) {
+        isInternetConnection = true;
+        emit(InternetConnectionState());
+      } else {
+        emit(NoInternetConnectionState());
+      }
+    });
+  }
+
+  @override
+  Future<void> close() {
+    _streamSubscription!.cancel();
+    return super.close();
   }
 }
